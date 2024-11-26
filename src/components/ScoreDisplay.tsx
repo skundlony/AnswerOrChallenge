@@ -6,8 +6,8 @@
 const ScoreDisplay: React.FC<Props> = ({ score, turn }) => {
     return (
         <div className="score-display">
-            <p>Wynik: {score}</p>
-            <p>Kolejka: {turn} z 10</p>
+            <p>Wynik: <span>{score}</span> </p>
+            <p>Kolejka: <span>{turn} z 10</span> </p>
         </div>
     );
 };

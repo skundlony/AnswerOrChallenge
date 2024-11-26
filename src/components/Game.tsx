@@ -23,6 +23,7 @@ const Game: React.FC = () => {
                 : questions.lightQuestions[
                     Math.floor(Math.random() * questions.lightQuestions.length)
                     ];
+
         setCurrentQuestion(question);
     };
 
@@ -49,18 +50,17 @@ const Game: React.FC = () => {
 
     return (
         <div className="game-container">
-            <h1>Gra: Pytania i Wyzwania</h1>
             {turn <= 10 ? (
                 <>
                     {!currentQuestion ? (
-                        <div className="options">
-                            <button onClick={() => handleQuestionSelection("heavy")}>
+                        <div className="options multi-button">
+                            <button className="btn-primary" onClick={() => handleQuestionSelection("heavy")}>
                                 Pytanie Trudne
                             </button>
-                            <button onClick={() => handleQuestionSelection("light")}>
+                            <button className="btn-secondary" onClick={() => handleQuestionSelection("light")}>
                                 Pytanie Lekkie
                             </button>
-                            <button onClick={handleChallenge}>Wyzwanie</button>
+                            <button className="btn-secondary-custom" onClick={handleChallenge}>Wyzwanie</button>
                         </div>
                     ) : (
                         <QuestionDisplay
@@ -72,7 +72,7 @@ const Game: React.FC = () => {
                 </>
             ) : (
                 <div className="game-over">
-                    <h2>Gra zakończona!</h2>
+                    <div className="gif-end"></div>
                     <p>Twój wynik: {score}</p>
                 </div>
             )}
