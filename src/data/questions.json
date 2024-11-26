@@ -1,0 +1,14 @@
+﻿{
+  "heavyQuestions": [
+    "Czym jest dla Ciebie prawdziwe szczęście?",
+    "Jakie jest Twoje największe marzenie?"
+  ],
+  "lightQuestions": [
+    "Jaki jest Twój ulubiony kolor?",
+    "Jaką potrawę jesz najczęściej?"
+  ],
+  "challenges": [
+    "Zrób 20 pompek.",
+    "Zaśpiewaj swoją ulubioną piosenkę."
+  ]
+}

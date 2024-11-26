@@ -1,0 +1,23 @@
+﻿.game-container {
+    text-align: center;
+    margin: 20px;
+}
+
+.question-display {
+    margin: 20px;
+}
+
+button {
+    margin: 10px;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.score-display {
+    margin: 20px;
+}
+
+.game-over {
+    margin-top: 20px;
+}

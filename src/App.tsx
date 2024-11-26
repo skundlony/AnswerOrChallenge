@@ -1,8 +1,7 @@
-import React from "react";
 import Game from "./components/Game";
 import "./styles/App.css";
 
-function App () {
+const App: React.FC = () => {
     return (
         <div className="App">
             <Game />
