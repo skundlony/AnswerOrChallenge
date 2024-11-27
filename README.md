@@ -1,50 +1,35 @@
-# React + TypeScript + Vite
+# Quiz Game with Spinner Animation
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A simple and fun quiz game built in React, featuring a spinner animation to randomly select questions. Players can choose between "Hard" and "Easy" questions, and if they skip a question, they must complete a "Challenge". The game ensures no repeated questions or challenges within the same game session.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- Choose between **Hard (Trudne)** or **Easy (Lekkie)** questions.
+- If a question is skipped, a random **Challenge (Wyzwanie)** is assigned.
+- Spinner animation displays before revealing the selected question or challenge.
+- Ensures no repeated questions or challenges in a single game.
+- Tracks player score based on question difficulty and challenge completion.
 
-## Expanding the ESLint configuration
+## Demo
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+![Game Preview](https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExNjV3OGViMmQxZDg1MG5qdWY4cW0zcWMwMm5kbnkybHNqOG45MnAxdiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/KAjAHFEnmL8ZkspHcP/giphy.webp)
 
-- Configure the top-level `parserOptions` property like this:
+## Table of Contents
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+- [Installation](#installation)
+- [Usage](#usage)
+- [Available Commands](#available-commands)
+- [Components Overview](#components-overview)
+- [Contributing](#contributing)
+- [License](#license)
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+## Installation
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
+Clone the repository and install dependencies:
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
+```bash
+git clone https://github.com/yourusername/quiz-game.git
+cd quiz-game
+npm install
+
+```bash
