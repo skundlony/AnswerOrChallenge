@@ -7,35 +7,83 @@ import "../styles/Game.css";
 
 const Game: React.FC = () => {
     const questions: Questions = questionsData;
-
+    const drawTime = 1500;
     const [score, setScore] = useState(0);
     const [currentQuestion, setCurrentQuestion] = useState<string | null>(null);
     const [questionType, setQuestionType] = useState<"heavy" | "light" | "challenge" | null>(null);
     const [turn, setTurn] = useState(1);
+    const [isChallengeMode, setIsChallengeMode] = useState(false);
+    const [isLoading, setIsLoading] = useState(false);
 
+    // Dostępne pytania, dynamicznie zarządzanie pulą
+    const [availableQuestions, setAvailableQuestions] = useState<{
+        heavy: string[];
+        light: string[];
+        challenge: string[];
+    }>({
+        heavy: [...questions.heavyQuestions],
+        light: [...questions.lightQuestions],
+        challenge: [...questions.challenges],
+    });
+
+    const getRandomQuestion = (type: "heavy" | "light" | "challenge") => {
+        const questionsForType = availableQuestions[type];
+        if (questionsForType.length === 0) return null;
+
+        const randomIndex = Math.floor(Math.random() * questionsForType.length);
+        const question = questionsForType[randomIndex];
+
+        // Usuń wylosowane pytanie z dostępnej puli
+        const updatedQuestions = [...questionsForType];
+        updatedQuestions.splice(randomIndex, 1);
+
+        setAvailableQuestions((prev) => ({
+            ...prev,
+            [type]: updatedQuestions,
+        }));
+
+        return question;
+    };
+
+    // Wybór pytania trudnego lub lekkiego
     const handleQuestionSelection = (type: "heavy" | "light") => {
         setQuestionType(type);
-        const question =
-            type === "heavy"
-                ? questions.heavyQuestions[
-                    Math.floor(Math.random() * questions.heavyQuestions.length)
-                    ]
-                : questions.lightQuestions[
-                    Math.floor(Math.random() * questions.lightQuestions.length)
-                    ];
+        setIsLoading(true);
 
-        setCurrentQuestion(question);
+        setTimeout(() => {
+            const question = getRandomQuestion(type);
+            if (!question) {
+                alert("Nie ma więcej pytań w tej kategorii!");
+                setIsLoading(false);
+                return;
+            }
+
+            setCurrentQuestion(question);
+            setIsLoading(false);
+            setIsChallengeMode(false);
+        }, drawTime);
     };
 
+    // Przejście do wyzwania
     const handleChallenge = () => {
         setQuestionType("challenge");
-        const challenge =
-            questions.challenges[
-                Math.floor(Math.random() * questions.challenges.length)
-                ];
-        setCurrentQuestion(challenge);
+        setIsLoading(true);
+
+        setTimeout(() => {
+            const challenge = getRandomQuestion("challenge");
+            if (!challenge) {
+                alert("Nie ma więcej wyzwań!");
+                setIsLoading(false);
+                return;
+            }
+
+            setCurrentQuestion(challenge);
+            setIsLoading(false);
+            setIsChallengeMode(true);
+        }, drawTime);
     };
 
+    // Obsługa odpowiedzi na pytanie
     const handleAnswer = (success: boolean) => {
         if (questionType === "heavy") setScore((prev) => prev + (success ? 15 : 0));
         else if (questionType === "light")
@@ -43,31 +91,56 @@ const Game: React.FC = () => {
         else if (questionType === "challenge")
             setScore((prev) => prev + (success ? 10 : 0));
 
-        setCurrentQuestion(null);
-        setQuestionType(null);
-        setTurn((prev) => prev + 1);
+        if (isChallengeMode || success) {
+            setCurrentQuestion(null);
+            setQuestionType(null);
+            setTurn((prev) => prev + 1);
+        } else {
+            handleChallenge();
+        }
     };
 
     return (
         <div className="game-container">
             {turn <= 10 ? (
                 <>
-                    {!currentQuestion ? (
+                    {!currentQuestion && !isLoading ? (
+                        <>
+                            <h2>Pytanie czy wyzwanie?</h2>
                         <div className="options multi-button">
-                            <button className="btn-primary" onClick={() => handleQuestionSelection("heavy")}>
+                            <button
+                                className="btn-primary"
+                                onClick={() => handleQuestionSelection("heavy")}
+                            >
                                 Pytanie Trudne
                             </button>
-                            <button className="btn-secondary" onClick={() => handleQuestionSelection("light")}>
+                            <button
+                                className="btn-secondary"
+                                onClick={() => handleQuestionSelection("light")}
+                            >
                                 Pytanie Lekkie
                             </button>
-                            <button className="btn-secondary-custom" onClick={handleChallenge}>Wyzwanie</button>
                         </div>
-                    ) : (
+                        </>
+                    ) : null}
+
+                    {isLoading && (
+                        <>
+                            <h2>Trwa losowanie</h2>
+                        <div className="gif-background-container">
+                            <div className="gif-background"></div>
+                        </div>
+                        </>
+                    )}
+
+                    {currentQuestion && !isLoading && (
                         <QuestionDisplay
                             question={currentQuestion}
                             onAnswer={handleAnswer}
+                            isChallengeMode={isChallengeMode}
                         />
                     )}
+
                     <ScoreDisplay score={score} turn={turn} />
                 </>
             ) : (

@@ -1,14 +1,24 @@
 ﻿interface Props {
     question: string;
     onAnswer: (success: boolean) => void;
+    isChallengeMode: boolean;
 }
 
-const QuestionDisplay: React.FC<Props> = ({ question, onAnswer }) => {
+const QuestionDisplay: React.FC<Props> = ({ question, onAnswer, isChallengeMode }) => {
     return (
         <div className="question-display">
             <p>{question}</p>
-            <button onClick={() => onAnswer(true)}>Odpowiedź/Wykonano</button>
-            <button onClick={() => onAnswer(false)}>Pomiń/Nie Wykonano</button>
+            {isChallengeMode ? (
+                <>
+                    <button onClick={() => onAnswer(true)}>Wykonał</button>
+                    <button onClick={() => onAnswer(false)}>Nie Wykonał</button>
+                </>
+            ) : (
+                <>
+                    <button onClick={() => onAnswer(true)}>Odpowiedział</button>
+                    <button onClick={() => onAnswer(false)}>Wyzwanie</button>
+                </>
+            )}
         </div>
     );
 };
