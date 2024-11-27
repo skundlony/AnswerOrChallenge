@@ -14,6 +14,7 @@ A simple and fun quiz game built in React, featuring a spinner animation to rand
 
 ![Game Preview](https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExNjV3OGViMmQxZDg1MG5qdWY4cW0zcWMwMm5kbnkybHNqOG45MnAxdiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/KAjAHFEnmL8ZkspHcP/giphy.webp)
 
+
 ## Table of Contents
 
 - [Installation](#installation)
@@ -31,5 +32,71 @@ Clone the repository and install dependencies:
 git clone https://github.com/yourusername/quiz-game.git
 cd quiz-game
 npm install
+``` 
+
+## Usage
+## Usage
+
+Start the development server:
 
 ```bash
+npm start
+```
+
+Visit http://localhost:5174 in your browser to play the game.
+
+## Available Commands
+
+- `npm start` - Start the development server.
+- `npm run build` - Create a production build.
+- `npm test` - Run tests.
+
+## Components Overview
+
+This project uses several reusable components. Here's an explanation of their functionality and the meaning of key terms:
+
+### `Game`
+
+The main component controlling the game logic and state. Handles user interactions, scoring, and rendering appropriate components.
+
+- **Trudne (Hard)**: Questions that are more challenging, awarding 15 points.
+- **Lekkie (Easy)**: Questions that are simpler, awarding 5 points.
+- **Wyzwanie (Challenge)**: Tasks assigned if a player skips a question, awarding 10 points if completed.
+
+### `QuestionDisplay`
+
+Displays the selected question or challenge and provides buttons to mark completion or skipping.
+
+### `ScoreDisplay`
+
+Displays the current score and the turn number out of 10.
+
+### Spinner Animation
+
+A GIF spinner displayed before revealing a selected question or challenge.
+
+### JSON Data
+
+Contains the questions and challenges in the following format:
+
+```json
+{
+  "heavyQuestions": ["What is your greatest achievement?", "Describe your happiest moment."],
+  "lightQuestions": ["What is your favorite color?", "What is your go-to comfort food?"],
+  "challenges": ["Do 20 push-ups.", "Sing a song in front of others."]
+}
+```
+## Contributing
+
+Contributions are welcome!
+
+### Guidelines
+
+- Ensure your code follows the existing coding style.
+- Write clear, concise commit messages.
+- Add comments where necessary to explain your code.
+- If you're fixing a bug, link to the issue in your PR description.
+
+## License
+
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
