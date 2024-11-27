@@ -12,7 +12,7 @@ A simple and fun quiz game built in React, featuring a spinner animation to rand
 
 ## Demo
 
-![Game Preview](https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExNjV3OGViMmQxZDg1MG5qdWY4cW0zcWMwMm5kbnkybHNqOG45MnAxdiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/KAjAHFEnmL8ZkspHcP/giphy.webp)
+![Game Preview](https://answer-or-challenge.vercel.app/)
 
 
 ## Table of Contents
@@ -99,4 +99,4 @@ Contributions are welcome!
 
 ## License
 
-This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
+This project is open-source and free to use under the MIT License. See the [LICENSE](LICENSE) file for details.
