@@ -99,5 +99,6 @@ Contributions are welcome!
 
 ## License
 
-This project is open-source and free to use under the MIT License. See the [LICENSE](LICENSE) file for details.
+This project is open-source and free to use.
+
 
