@@ -12,7 +12,7 @@ A simple and fun quiz game built in React, featuring a spinner animation to rand
 
 ## Demo
 
-![Game Preview](https://answer-or-challenge.vercel.app/)
+[Game Preview](https://answer-or-challenge.vercel.app/)
 
 
 ## Table of Contents
